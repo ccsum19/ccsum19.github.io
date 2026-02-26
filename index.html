@@ -3,257 +3,476 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hello, It's Sumin</title>
+<title>Sumin Cho — KAIST Visual Media Lab</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700&family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0e17;               /* 배경: 깊은 네이비 */
-  --surface: #111727;          /* 카드: slate 900 */
-  --border: #1f2937;           /* 테두리: slate 800 */
-  
-  /* 3 액센트 – 각 카테고리에 배정 */
-  --accent1: #a27aff;          /* 보라: 더 밝고 포화 ↑ (3D Representation) */
-  --accent2: #71dbf8;          /* 빨강/코랄: 밝고 따뜻 (Diffusion) */
-  --accent3: #10b981;          /* 에메랄드 그린: 선명 (Generative/Human) */
-  
-  --text: #f8fafc;             /* 주요: 거의 흰색 */
-  --text-muted: #b0bbc8;       /* 보조: **매우 밝은 회색** – 핵심! */
-  --text-dim: #abb8c8;         /* 희미: slate 300 */
-  
-  --mono: 'Space Mono', monospace;
-  --serif: 'DM Serif Display', serif;
-  --sans: 'DM Sans', sans-serif;
+  --bg:         #07090f;
+  --bg2:        #0c0f1a;
+  --surface:    #0f1422;
+  --border:     #1a2035;
+  --border2:    #243050;
+  --sky:        #7dd3fc;
+  --sky-dim:    rgba(125,211,252,.1);
+  --sky-mid:    rgba(125,211,252,.3);
+  --text:       #e8edf5;
+  --text-muted: #8a99b3;
+  --text-dim:   #4a5568;
+  --mono: 'IBM Plex Mono', monospace;
+  --serif: 'EB Garamond', serif;
+  --sans: 'IBM Plex Sans', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.75;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 20px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid transparent;
+  transition: border-color .4s, background .4s;
+}
+nav.scrolled {
+  background: rgba(7,9,15,.92);
+  backdrop-filter: blur(16px);
+  border-color: var(--border);
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--sky);
+  text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--sky); }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden;font-size:17px;}
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 60px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,border-color .4s;}
-nav.light{background:rgba(10,10,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-nav.dark{background:rgba(10,10,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:.12em;color:var(--accent1);}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:color .2s;}
-nav.light .nav-links a{color:var(--text-muted);}
-nav.light .nav-links a:hover{color:var(--accent3);}
-nav.dark  .nav-links a{color:var(--text-muted);}
-nav.dark  .nav-links a:hover{color:var(--accent3);}
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 64px 80px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse 75% 65% at 65% 35%, rgba(125,211,252,.055) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 55% at 15% 75%, rgba(125,211,252,.028) 0%, transparent 60%);
+}
+#hero::after {
+  content: '';
+  position: absolute;
+  left: 64px; right: 64px; bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sky-mid), transparent);
+}
 
-/* ══════════════════════════════
-   HERO — DARK
-══════════════════════════════ */
-#hero{background:var(--bg);min-height:70vh;display:flex;align-items:center;padding:90px 6vw 0px;position:relative;overflow:hidden;}
-/* subtle grid overlay on hero */
-#hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
-.hero-splash{position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(124,106,255,.1) 0%,rgba(0,229,195,.05) 50%,transparent 70%);left:-80px;top:50%;transform:translateY(-50%);pointer-events:none;}
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  animation: scrollFadeIn 1s ease 1.8s forwards;
+  transition: opacity .5s;
+}
+.scroll-hint.gone { opacity: 0 !important; pointer-events: none; }
+.scroll-hint-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.scroll-mouse {
+  width: 22px; height: 34px;
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+.scroll-dot {
+  width: 3px; height: 7px;
+  background: var(--sky);
+  border-radius: 2px;
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+@keyframes scrollBounce {
+  0%   { transform: translateY(0);    opacity: 1; }
+  70%  { transform: translateY(11px); opacity: 0; }
+  71%  { transform: translateY(0);    opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+@keyframes scrollFadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
 
-.hero-inner{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:center;}
+.hero-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 80px;
+  align-items: center;
+}
 
-/* video side */
-.hero-video-outer{position:relative;display:flex;justify-content:center;}
-.hero-video-frame{width:100%;max-width:260px;aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid var(--border);box-shadow:0 24px 64px rgba(124,106,255,.15),0 0 0 1px rgba(124,106,255,.08);}
-.hero-video-frame img{width:100%;height:100%;object-fit:cover;display:block;}
-.hero-gif-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#1a1830,#0f2020);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
-.hero-gif-placeholder .icon{font-size:48px;}
-.hero-gif-placeholder .lbl{font-family:var(--mono);font-size:10px;color:var(--text-muted);text-align:center;line-height:1.7;}
-.hero-badge{position:absolute;bottom:16px;right:0;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--accent1);box-shadow:0 4px 16px rgba(0,0,0,.4);white-space:nowrap;}
+/* Photo */
+.hero-photo-col { display: flex; flex-direction: column; align-items: center; }
+.hero-photo-wrap {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border2);
+  box-shadow: 0 0 0 7px rgba(125,211,252,.06), 0 20px 50px rgba(0,0,0,.55);
+  flex-shrink: 0;
+}
+.hero-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-photo-label {
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.7;
+}
 
-/* text side */
-.hero-greeting{font-family:var(--mono);font-size:13px;color:var(--text-muted);margin-bottom:10px;letter-spacing:.04em;}
-.hero-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent1);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-.hero-eyebrow::before{content:'';width:22px;height:1px;background:var(--accent1);}
-h1{font-family:var(--serif);font-size:clamp(36px,4.5vw,60px);line-height:1.0;color:var(--text);margin-bottom:6px;}
-.name-accent{background:linear-gradient(135deg,var(--accent1),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-role{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--text-muted);margin-bottom:24px;}
-.hero-desc{font-size:16px;color:var(--text-muted);line-height:1.85;max-width:640px;margin-bottom:24px;}
-.hero-desc strong{color:var(--text);font-weight:500;}
+/* Hero text */
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--sky); opacity: .6; }
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+}
+.name-em { color: var(--sky); }
+.hero-affil {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: .06em;
+  margin-bottom: 28px;
+}
+.hero-bio {
+  font-size: 15.5px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  max-width: 580px;
+  margin-bottom: 28px;
+}
+.hero-bio strong { color: var(--text); font-weight: 400; }
+.research-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.rtag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .07em;
+  padding: 5px 12px;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  color: var(--text-muted);
+  background: var(--surface);
+  transition: all .2s;
+  cursor: default;
+}
+.rtag:hover { border-color: var(--sky-mid); color: var(--sky); background: var(--sky-dim); }
+.hero-contacts { display: flex; gap: 10px; align-items: center; }
+.icon-btn {
+  width: 36px; height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all .2s;
+}
+.icon-btn:hover { border-color: var(--sky); color: var(--sky); background: var(--sky-dim); }
+.contact-email {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: .05em;
+  padding-left: 8px;
+  border-left: 1px solid var(--border2);
+  margin-left: 4px;
+}
 
-/* research interest chips in hero */
-.hero-interests{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
-.hi-chip{font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:6px 12px;border-radius:3px;border:1px solid;transition:all .2s;cursor:default;}
-.hi-chip.c1{background:rgba(124,106,255,.07);border-color:rgba(124,106,255,.25);color:var(--accent1);}
-.hi-chip.c2{background:rgba(106, 183, 255, 0.06);border-color:rgba(106, 114, 255, 0.22);color:var(--accent2);}
-.hi-chip.c3{background:rgba(0,229,195,.06);border-color:rgba(0,229,195,.22);color:var(--accent3);}
+/* PAGE BODY */
+.page-body { max-width: 1100px; margin: 0 auto; padding: 0 64px; }
+section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+section:last-of-type { border-bottom: none; }
 
-.hero-links{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px}
-.btn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;border-radius:4px;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:6px;border:none;cursor:pointer;}
-.btn-dark{background:var(--accent1);color:#fff;}
-.btn-dark:hover{opacity:1.0;}
-.btn-outline{background:transparent;color:var(--text-muted);border:none;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.2);}
-.btn-outline:hover{color:var(--accent3);text-decoration-color:var(--accent3);}
-.btn-icon{background:rgba(255,255,255,.06);color:var(--text-muted);border:1px solid rgba(255,255,255,.1);border-radius:8px;width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;padding:0;transition:all .2s;}
-.btn-icon:hover{border-color:var(--accent2);color:var(--accent2);background:rgba(30, 201, 175, 0.375);}
+.sec-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--sky); opacity: .35; }
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 36px;
+  letter-spacing: -.01em;
+}
 
-/* ══════════════════════════════
-   DARK BODY
-══════════════════════════════ */
-.dark-body{background:var(--bg);color:var(--text);position:relative;}
-.grid-bg{position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.08;pointer-events:none;z-index:0;}
-.orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;animation:float 8s ease-in-out infinite;}
-.orb1{width:500px;height:500px;background:rgba(124,106,255,.07);top:10%;right:-100px;}
-.orb2{width:350px;height:350px;background:rgba(0,229,195,.05);bottom:20%;left:-80px;animation-delay:3s;}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-28px)}}
+/* SNAPSHOT */
+.snap-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.snap-block { margin-bottom: 36px; }
+.snap-block:last-child { margin-bottom: 0; }
+.snap-head {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--sky);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+.edu-item { margin-bottom: 16px; }
+.edu-deg { font-size: 14.5px; font-weight: 400; color: var(--text); margin-bottom: 2px; }
+.edu-inst { font-family: var(--mono); font-size: 11px; color: var(--sky); margin-bottom: 1px; }
+.edu-period { font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
+.exp-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 12px; align-items: flex-start; }
+.exp-title { font-size: 14px; color: var(--text); margin-bottom: 1px; }
+.exp-org { font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
+.exp-period { font-family: var(--mono); font-size: 10px; color: var(--text-dim); white-space: nowrap; flex-shrink: 0; padding-top: 2px; }
+.honor-item { margin-bottom: 10px; }
+.honor-title { font-size: 14px; color: var(--text); margin-bottom: 1px; }
+.honor-org { font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
+.skills-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.skill { font-family: var(--mono); font-size: 10px; padding: 3px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; color: var(--text-muted); }
 
-.dark-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 6vw;}
-section{padding:56px 0;}
+/* PUBLICATIONS */
+.pub-list { display: flex; flex-direction: column; }
+.pub-item {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 20px;
+  transition: background .2s;
+}
+.pub-item:first-child { border-top: 1px solid var(--border); }
+.pub-item:hover { background: rgba(125,211,252,.015); }
+.pub-index { font-family: var(--mono); font-size: 11px; color: var(--text-dim); padding-top: 2px; text-align: right; }
+.pub-status {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.status-wip { background: var(--sky-dim); color: var(--sky); border: 1px solid var(--sky-mid); }
+.status-pub { background: rgba(255,255,255,.04); color: var(--text-muted); border: 1px solid var(--border2); }
+.pub-title { font-family: var(--serif); font-size: 17px; color: var(--text); margin-bottom: 8px; line-height: 1.45; font-weight: 400; }
+.pub-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; margin-bottom: 10px; }
+.pub-venue { font-family: var(--mono); font-size: 10px; color: var(--text-dim); margin-bottom: 10px; }
+.pub-links { display: flex; gap: 14px; }
+.pub-link { font-family: var(--mono); font-size: 10px; color: var(--sky); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; letter-spacing: .04em; }
+.pub-link:hover { border-color: var(--sky); }
 
-.section-label{font-family:var(--mono);font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent1);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
-.section-label::after{content:'';width:32px;height:1px;background:var(--accent1);opacity:.5;}
-h2{font-family:var(--serif);font-size:clamp(24px,3.5vw,36px);margin-bottom:28px;color:var(--text);}
+/* PROJECTS */
+.proj-list { display: flex; flex-direction: column; }
+.proj-item {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 52px 1fr 24px;
+  gap: 20px;
+  align-items: start;
+  cursor: pointer;
+  transition: background .2s;
+}
+.proj-item:first-child { border-top: 1px solid var(--border); }
+.proj-item:hover { background: rgba(125,211,252,.015); }
+.proj-item:hover .proj-arrow { color: var(--sky); transform: translate(3px,-3px); }
+.proj-num { font-family: var(--mono); font-size: 11px; color: var(--text-dim); text-align: right; padding-top: 2px; }
+.proj-title { font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 5px; }
+.proj-desc { font-size: 13px; color: var(--text-muted); line-height: 1.75; margin-bottom: 10px; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.ptag { font-family: var(--mono); font-size: 9px; padding: 2px 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; color: var(--text-dim); }
+.proj-arrow { font-family: var(--mono); font-size: 14px; color: var(--text-dim); transition: all .25s; padding-top: 2px; }
 
-/* ── SNAPSHOT ── */
-#snapshot{padding:52px 0;border-bottom:1px solid var(--border);}
-.snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
-.snap-title{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent3);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-.edu-degree{font-size:15px;font-weight:500;color:var(--text);margin-bottom:1px;}
-.edu-inst{font-family:var(--mono);font-size:11px;color:var(--accent1);margin-bottom:1px;}
-.edu-period{font-family:var(--mono);font-size:11px;color:var(--text-muted);}
-.edu-row{margin-bottom:14px;}
+/* PAPERS */
+.paper-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.paper-cat { background: var(--surface); padding: 28px 24px; cursor: pointer; transition: background .2s; position: relative; border-right: 1px solid var(--border); }
+.paper-cat:last-child { border-right: none; }
+.paper-cat:hover { background: rgba(125,211,252,.04); }
+.paper-cat:hover .pcat-arrow { color: var(--sky); }
+.pcat-icon { font-size: 22px; margin-bottom: 14px; }
+.pcat-name { font-family: var(--serif); font-size: 16px; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+.pcat-sub { font-family: var(--mono); font-size: 9px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; letter-spacing: .04em; }
+.pcat-count { font-family: var(--mono); font-size: 10px; color: var(--sky); letter-spacing: .1em; }
+.pcat-arrow { position: absolute; top: 20px; right: 20px; font-size: 14px; color: var(--text-dim); transition: all .2s; font-family: var(--mono); }
 
-.ind-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:1px;}
-.ind-org{font-family:var(--mono);font-size:11px;color:var(--accent1);}
-.ind-row{margin-bottom:11px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
-.ind-period{font-family:var(--mono);font-size:11px;color:var(--text-muted);white-space:nowrap;padding-top:1px;}
-.honor-row{margin-bottom:9px;}
-.honor-title{font-size:15px;color:var(--text);margin-bottom:1px;}
-.honor-org{font-family:var(--mono);font-size:11px;color:var(--text-muted);}
+/* MODALS */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(4,6,12,.9);
+  backdrop-filter: blur(14px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  width: 100%; max-height: 88vh; overflow-y: auto;
+  transform: translateY(12px);
+  transition: transform .25s;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-muted);
+  font-family: var(--mono); font-size: 12px;
+  transition: all .2s; z-index: 10;
+}
+.modal-close:hover { color: var(--text); border-color: var(--sky); }
+#proj-modal { max-width: 640px; }
+.modal-img-ph {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--surface);
+  border-radius: 6px 6px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: .1em;
+}
+.modal-body { padding: 28px 32px 36px; }
+.modal-ven { font-family: var(--mono); font-size: 10px; color: var(--text-dim); margin-bottom: 10px; letter-spacing: .06em; }
+.modal-title { font-family: var(--serif); font-size: 22px; color: var(--text); margin-bottom: 14px; line-height: 1.35; }
+.modal-desc { font-size: 14px; color: var(--text-muted); line-height: 1.85; margin-bottom: 20px; }
+.modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+.modal-links { display: flex; gap: 10px; }
+.mbtn { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 10px 18px; border-radius: 3px; text-decoration: none; transition: all .2s; }
+.mbtn-sky { background: var(--sky); color: var(--bg); }
+.mbtn-sky:hover { opacity: .85; }
+.mbtn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border2); }
+.mbtn-ghost:hover { border-color: var(--sky); color: var(--sky); }
+#paper-modal { max-width: 740px; }
+.pmodal-head { padding: 28px 32px 0; }
+.pmodal-cat { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); margin-bottom: 6px; }
+.pmodal-title { font-family: var(--serif); font-size: 24px; color: var(--text); margin-bottom: 4px; }
+.pmodal-sub { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-bottom: 24px; }
+.pmodal-divider { height: 1px; background: var(--border); margin: 0 32px; }
+.pmodal-body { padding: 8px 32px 36px; }
+.paper-row { border-bottom: 1px solid var(--border); padding: 20px 0; }
+.paper-row:last-child { border-bottom: none; }
+.paper-row-top { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 6px; }
+.paper-rtitle { font-size: 14.5px; color: var(--text); flex: 1; line-height: 1.45; }
+.paper-rven { font-family: var(--mono); font-size: 9px; color: var(--text-dim); white-space: nowrap; padding-top: 3px; }
+.paper-note { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; margin-bottom: 8px; }
+.paper-note em { color: var(--text); font-style: normal; }
+.paper-rlinks { display: flex; gap: 10px; }
+.paper-rlink { font-family: var(--mono); font-size: 10px; color: var(--sky); text-decoration: none; border-bottom: 1px solid var(--sky-mid); transition: border-color .2s; padding-bottom: 1px; }
+.paper-rlink:hover { border-color: var(--sky); }
 
-.skill-pill{font-family:var(--mono);font-size:10px;color:var(--text-muted);padding:4px 10px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:3px;}
-/* ── PUBLICATIONS ── */
-.pub-list{display:flex;flex-direction:column;gap:16px;}
-.pub-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px 28px;transition:all .25s;position:relative;overflow:hidden;}
-.pub-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent1);transform:scaleY(0);transform-origin:bottom;transition:transform .25s;}
-.pub-card:hover{border-color:rgba(124,106,255,.3);transform:translateX(4px);}
-.pub-card:hover::before{transform:scaleY(1);}
-.pub-venue{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent2);text-transform:uppercase;margin-bottom:6px;}
-.pub-title{font-size:16px;font-weight:500;margin-bottom:7px;color:var(--text);}
-.pub-desc{font-size:15px;color:var(--text-muted);margin-bottom:12px;line-height:1.75;}
-.pub-links{display:flex;gap:12px;flex-wrap:wrap;}
-.pub-link{font-family:var(--mono);font-size:11px;color:var(--accent3);text-decoration:none;border-bottom:1px solid rgba(0,229,195,.3);padding-bottom:1px;transition:border-color .2s;}
-.pub-link:hover{border-color:var(--accent3);}
-.pub-badge-only{margin-bottom:6px;}
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 36px 64px; display: flex; align-items: center; justify-content: space-between; }
+.footer-id { font-family: var(--mono); font-size: 11px; color: var(--sky); letter-spacing: .1em; }
+.footer-meta { font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--sky); }
 
-.badge{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:2px 7px;border-radius:2px;text-transform:uppercase;margin-left:0px;vertical-align:middle;}
-.badge-wip{background:rgba(0,229,195,.08);color:var(--accent3);border:1px solid rgba(0,229,195,.25);}
-.badge-pub{background:rgba(124,106,255,.08);color:var(--accent1);border:1px solid rgba(124,106,255,.25);}
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ── PROJECTS ── */
-.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;}
-.project-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;transition:all .25s;cursor:pointer;}
-.project-card:hover{border-color:rgba(0,229,195,.3);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.35);}
-.project-number{font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-bottom:10px;}
-.project-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:8px;line-height:1.4;}
-.project-desc{font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:14px;}
-.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
-.tag{font-family:var(--mono);font-size:9px;padding:3px 8px;background:rgba(124,106,255,.07);border:1px solid rgba(124,106,255,.15);border-radius:2px;color:var(--accent1);}
-.project-cta{font-family:var(--mono);font-size:10px;color:var(--text-dim);transition:color .2s;}
-.project-card:hover .project-cta{color:var(--accent3);}
-
-/* ══════════════════════════════
-   PAPER STUDY — CATEGORY CARDS
-══════════════════════════════ */
-.paper-cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;}
-
-.paper-cat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:26px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
-.paper-cat-card::after{content:'';position:absolute;inset:0;border-radius:10px;opacity:0;transition:opacity .25s;}
-.paper-cat-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.35);}
-
-.paper-cat-card[data-cat="0"]{border-color:rgba(124,106,255,.2);}
-.paper-cat-card[data-cat="0"]:hover{border-color:rgba(124,106,255,.5);}
-.paper-cat-card[data-cat="1"]{border-color:rgba(255,106,142,.2);}
-.paper-cat-card[data-cat="1"]:hover{border-color:rgba(255,106,142,.5);}
-.paper-cat-card[data-cat="2"]{border-color:rgba(0,229,195,.2);}
-.paper-cat-card[data-cat="2"]:hover{border-color:rgba(0,229,195,.5);}
-.paper-cat-card[data-cat="3"]{border-color:rgba(255,200,80,.2);}
-.paper-cat-card[data-cat="3"]:hover{border-color:rgba(255,200,80,.5);}
-
-.cat-icon{font-size:28px;margin-bottom:14px;}
-.cat-name{font-family:var(--serif);font-size:18px;color:var(--text);margin-bottom:6px;line-height:1.3;}
-.cat-sub{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-bottom:14px;letter-spacing:.04em;}
-.cat-count{font-family:var(--mono);font-size:10px;letter-spacing:.1em;}
-.paper-cat-card[data-cat="0"] .cat-count{color:var(--accent1);}
-.paper-cat-card[data-cat="1"] .cat-count{color:var(--accent2);}
-.paper-cat-card[data-cat="2"] .cat-count{color:var(--accent3);}
-.paper-cat-card[data-cat="3"] .cat-count{color:#ffc850;}
-.cat-arrow{position:absolute;bottom:20px;right:20px;font-size:16px;color:var(--text-dim);transition:all .2s;}
-.paper-cat-card:hover .cat-arrow{color:var(--text-muted);transform:translate(2px,-2px);}
-footer a{color:var(--text-dim);text-decoration:none;}
-footer a:hover{color:var(--accent1);}
-/* ══════════════════════════════
-   MODALS (shared style)
-══════════════════════════════ */
-.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(5,5,10,.88);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .25s;}
-.modal-overlay.open{opacity:1;pointer-events:all;}
-.modal{background:#13131e;border:1px solid var(--border);border-radius:12px;width:100%;max-height:88vh;overflow-y:auto;transform:translateY(18px) scale(.98);transition:transform .25s;position:relative;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
-.modal-overlay.open .modal{transform:translateY(0) scale(1);}
-.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);font-size:14px;transition:all .2s;z-index:10;}
-.modal-close:hover{background:rgba(255,255,255,.12);color:var(--text);}
-
-/* project modal */
-#proj-modal{max-width:680px;}
-.modal-img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px 12px 0 0;display:block;}
-.modal-img-placeholder{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:12px 12px 0 0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--text-dim);}
-.modal-body{padding:28px 32px 32px;}
-.modal-venue{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--accent2);text-transform:uppercase;margin-bottom:7px;}
-.modal-title{font-family:var(--serif);font-size:22px;color:var(--text);margin-bottom:12px;line-height:1.3;}
-.modal-desc{font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:18px;}
-.modal-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;}
-.modal-links{display:flex;gap:10px;flex-wrap:wrap;}
-.btn-m{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border-radius:4px;text-decoration:none;transition:all .2s;}
-.btn-m-primary{background:var(--accent1);color:#fff;}
-.btn-m-primary:hover{opacity:.85;}
-.btn-m-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border);}
-.btn-m-ghost:hover{border-color:var(--accent3);color:var(--accent3);}
-
-/* paper category modal */
-#paper-modal{max-width:760px;}
-.pmodal-header{padding:28px 32px 0;}
-.pmodal-cat-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;}
-.pmodal-title{font-family:var(--serif);font-size:26px;color:var(--text);margin-bottom:4px;}
-.pmodal-sub{font-family:var(--mono);font-size:11px;color:var(--text-muted);margin-bottom:24px;}
-.pmodal-divider{height:1px;background:var(--border);margin:0 32px;}
-.pmodal-list{padding:20px 32px 32px;display:flex;flex-direction:column;gap:0;}
-
-/* individual paper row */
-.paper-row{border-bottom:1px solid var(--border);padding:18px 0;}
-.paper-row:last-child{border-bottom:none;}
-.paper-row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;}
-.paper-row-title{font-size:15px;font-weight:500;color:var(--text);line-height:1.4;flex:1;}
-.paper-row-venue{font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap;padding-top:2px;}
-.paper-note{font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:8px;}
-.paper-note em{color:var(--text);font-style:normal;font-weight:500;}
-.paper-row-links{display:flex;gap:10px;flex-wrap:wrap;}
-.paper-link{font-family:var(--mono);font-size:10px;color:var(--accent3);text-decoration:none;border-bottom:1px solid rgba(0,229,195,.3);padding-bottom:1px;transition:border-color .2s;}
-.paper-link:hover{border-color:var(--accent3);}
-
-/* ── FOOTER ── */
-footer{border-top:1px solid var(--border);padding:36px 0;text-align:center;font-family:var(--mono);font-size:10px;color:var(--text-dim);}
-
-/* ── FADE IN ── */
-.fade-in{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease;}
-.fade-in.animate{opacity:0;transform:translateY(20px);}
-.fade-in.animate.visible{opacity:1;transform:translateY(0);}
-
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  nav{padding:14px 20px;}
-  .nav-links{display:none;}
-  #hero{padding:100px 24px 64px;}
-  .hero-inner{grid-template-columns:1fr;gap:40px;}
-  .hero-video-frame{max-width:240px;margin:0 auto;}
-  .dark-inner{padding:0 24px;}
-  .snapshot-grid{grid-template-columns:1fr;gap:32px;}
+/* RESPONSIVE */
+@media(max-width:900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  #hero { padding: 90px 24px 70px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero-photo-col { align-items: flex-start; }
+  .page-body { padding: 0 24px; }
+  .snap-cols { grid-template-columns: 1fr; gap: 32px; }
+  .paper-grid { grid-template-columns: 1fr 1fr; }
+  .paper-cat { border-right: none; border-bottom: 1px solid var(--border); }
+  footer { padding: 28px 24px; flex-direction: column; gap: 8px; text-align: center; }
+}
+@media(max-width:540px) {
+  .paper-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<nav class="dark" id="main-nav">
-  <div class="nav-logo">SUMIN CHO</div>
+<nav id="main-nav">
+  <div class="nav-logo">Sumin Cho</div>
   <ul class="nav-links">
     <li><a href="#snapshot">About</a></li>
     <li><a href="#publications">Publications</a></li>
@@ -262,210 +481,234 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center;font-
   </ul>
 </nav>
 
-<!-- ══ HERO ══ -->
 <section id="hero">
-  <div class="hero-splash"></div>
-  <div class="hero-inner">
-
-    <div class="hero-video-outer">
-      <div class="hero-video-frame">
-          <img src="profile.gif" alt="3DGS Face Reconstruction">
+  <div class="hero-grid">
+    <div class="hero-photo-col">
+      <div class="hero-photo-wrap">
+        <img src="profile.gif" alt="Sumin Cho">
       </div>
+      <div class="hero-photo-label">3DGS Self-Reconstruction<br>Visual Media Lab · KAIST</div>
     </div>
-
     <div class="hero-text">
-      <div class="hero-greeting">Hi, It's Sumin.</div>
-      <div class="hero-eyebrow">Computer Vision &amp; Graphics · KAIST</div>
-      <h1><span class="name-accent">Sumin</span>  Cho</h1>
-      <p class="hero-role">M.S. Candidate · Visual Media Lab · KAIST</p>
-      <div class="hero-links">
-        <a href="mailto:sumincho@kaist.ac.kr" class="btn btn-icon" title="Email">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </a>
-        <a href="https://github.com/ccsum19" target="_blank" class="btn btn-icon" title="GitHub">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <a href="https://scholar.google.co.kr/citations?hl=ko&user=Yc6zOJIAAAAJ" target="_blank" class="btn btn-icon" title="Google Scholar">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
-        </a>
-        </div>
-      <p class="hero-desc">
-        I work at the intersection of <strong>computer vision</strong> and <strong>computer graphics</strong>, focused on controllable generative AI for 3D content. My research explores <strong>diffusion and flow-based models</strong> — using 2D diffusion priors or combining 3D flow model latents with graphics representations for stylization, editing, and reconstruction.
+      <div class="hero-tag">M.S. Candidate · Computer Vision &amp; Graphics</div>
+      <h1><span class="name-em">Sumin</span> Cho</h1>
+      <div class="hero-affil">Visual Media Lab · KAIST &nbsp;·&nbsp; Prof. Junyong Noh</div>
+      <p class="hero-bio">
+        I work at the intersection of <strong>computer vision</strong> and <strong>computer graphics</strong>, focused on controllable generative AI for 3D content. My research explores <strong>diffusion and flow-based models</strong> — leveraging 2D diffusion priors or combining 3D flow model latents with neural representations for stylization, editing, and reconstruction.
       </p>
+      <div class="research-tags">
+        <span class="rtag">Controllable Generative AI</span>
+        <span class="rtag">Diffusion &amp; Flow Models</span>
+        <span class="rtag">3D Stylization &amp; Editing</span>
+        <span class="rtag">3D Reconstruction</span>
+        <span class="rtag">3D Deformation</span>
+        <span class="rtag">Video and 4D Editing</span>
 
-      <!-- Research Interests inline -->
-      <div class="hero-interests">
-        <span class="hi-chip c1">Controllable Generative AI</span>
-        <span class="hi-chip c2">Diffusion &amp; Flow Models</span>
-        <span class="hi-chip c1">3D Stylization &amp; Editing</span>
-        <span class="hi-chip c3">3D Reconstruction</span>
-        <span class="hi-chip c2">Video Generation</span>
       </div>
-
-
+      <div class="hero-contacts">
+        <a href="mailto:sumincho@kaist.ac.kr" class="icon-btn" title="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+        <a href="https://github.com/ccsum19" target="_blank" class="icon-btn" title="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://scholar.google.co.kr/citations?hl=ko&user=Yc6zOJIAAAAJ" target="_blank" class="icon-btn" title="Google Scholar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
+        </a>
+        <span class="contact-email">sumincho@kaist.ac.kr</span>
+      </div>
     </div>
+  </div>
+
+  <div class="scroll-hint" id="scroll-hint" onclick="document.getElementById('snapshot').scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+    <div class="scroll-hint-label">Scroll</div>
   </div>
 </section>
 
-<!-- ══ DARK BODY ══ -->
-<div class="dark-body">
-  <div class="grid-bg"></div>
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="dark-inner">
+<div class="page-body">
 
-    <!-- 00 SNAPSHOT -->
-    <section id="snapshot" class="fade-in">
-      <div class="section-label">00 — Quick Snapshot</div>
-        <div class="snapshot-grid">
-
-        <!-- 왼쪽: Education + Industry -->
-        <div>
-            <div style="margin-bottom:32px;">
-            <div class="snap-title">Education</div>
-            <div class="edu-row">
-                <div class="edu-degree">M.S. Computer Vision &amp; Graphics <span style="color:var(--text-dim);font-size:11px;"> · GPA 4.1/4.3</span></div>
-                <div class="edu-inst">KAIST · Visual Media Lab (Prof. Junyong Noh)</div>
-                <div class="edu-period">Sep 2024 – Aug 2026 (expected)</div>
-            </div>
-            <div class="edu-row">
-                <div class="edu-degree">B.S. Art&Tech · Software · Media <span style="color:var(--text-dim);font-size:11px;"> · Triple Major</span></div>
-                <div class="edu-inst">Sogang University</div>
-                <div class="edu-period">Mar 2019 – Aug 2024</div>
-                <div class="edu-inst" style="color:var(--text-dim);font-size:12px;">Study Abroad · University of Georgia</div>
-            </div>
-            </div>
-            <div style="margin-bottom:28px;">
-            <div class="snap-title">Industry & Research Experience</div>
-            <div class="ind-row"><div><div class="ind-title">Software Engineer</div><div class="ind-org">Abear (Windly) — Internship to Freelance</div></div><div class="ind-period">Jul 2024–Present</div></div>
-            <div class="ind-row"><div><div class="ind-title">Student Researcher</div><div class="ind-org">Media AI Lab, Sogang Univ. (Prof. Moon Jung)</div></div><div class="ind-period">Mar 2023–Jul 2024</div></div>
-            <div class="ind-row"><div><div class="ind-title">Founder & Product Developer</div><div class="ind-org">Handyy — Foot-tech Startup</div></div><div class="ind-period">Mar 2021–Dec 2022</div></div>
-            </div>
+  <section id="snapshot" class="reveal">
+    <div class="sec-label">00 — Quick Snapshot</div>
+    <h2>About</h2>
+    <div class="snap-cols">
+      <div>
+        <div class="snap-block">
+          <div class="snap-head">Education</div>
+          <div class="edu-item">
+            <div class="edu-deg">M.S. Computer Vision &amp; Graphics <span style="color:var(--text-dim);font-size:11px;font-family:var(--mono);">· GPA 4.1/4.3</span></div>
+            <div class="edu-inst">KAIST · Visual Media Lab (Prof. Junyong Noh)</div>
+            <div class="edu-period">Sep 2024 – Aug 2026 (expected)</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-deg">B.S. Art&amp;Tech · Software · Media <span style="color:var(--text-dim);font-size:11px;font-family:var(--mono);">· Triple Major</span></div>
+            <div class="edu-inst">Sogang University</div>
+            <div class="edu-period">Mar 2019 – Aug 2024</div>
+            <div class="edu-period" style="margin-top:2px;">Study Abroad · University of Georgia</div>
+          </div>
         </div>
-
-        <!-- 오른쪽: Service + Honors + Skills -->
-        <div>
-            <div style="margin-bottom:28px;">
-            <div class="snap-title">Service & Leadership</div>
-            <div class="honor-row"><div class="honor-title">Reviewer — ACM CHI 2026 Posters</div><div class="honor-org" style="color:var(--accent1);">ACM SIGCHI</div></div>
-            <div class="honor-row"><div class="honor-title">Graduate Student Council President</div><div class="honor-org" style="color:var(--accent1);">KAIST Culture Technology</div></div>
-            <div class="honor-row"><div class="honor-title">Exhibition Staff</div><div class="honor-org" style="color:var(--accent1);">CES 2024 · SIGGRAPH Asia 2025</div></div>
-            </div>
-            <div style="margin-bottom:28px;">
-            <div class="snap-title">Honors</div>
-            <div class="honor-row"><div class="honor-title">Certificate of Excellence — TA</div><div class="honor-org" style="color:var(--accent1);">KAIST Education 4.0Q · Sep 2025</div></div>
-            <div class="honor-row"><div class="honor-title">Excellence Award</div><div class="honor-org" style="color:var(--accent1);">Samsung Securities Digital IT · Dec 2023</div></div>
-            </div>
-            <div>
-            <div class="snap-title">Technical Skills</div>
-            <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;">
-                <span class="skill-pill">Python</span><span class="skill-pill">C++</span><span class="skill-pill">CUDA</span>
-                <span class="skill-pill">PyTorch</span><span class="skill-pill">Diffusers</span><span class="skill-pill">Nerfstudio</span>
-                <span class="skill-pill">3DGS</span><span class="skill-pill">Blender</span><span class="skill-pill">Maya</span>
-            </div>
-            </div>
+        <div class="snap-block">
+          <div class="snap-head">Industry &amp; Research</div>
+          <div class="exp-row">
+            <div><div class="exp-title">Software Engineer</div><div class="exp-org">Abear (Windly) — Internship to Freelance</div></div>
+            <div class="exp-period">Jul 2024–Present</div>
+          </div>
+          <div class="exp-row">
+            <div><div class="exp-title">Student Researcher</div><div class="exp-org">Media AI Lab, Sogang Univ. (Prof. Moon Jung)</div></div>
+            <div class="exp-period">Mar 2023–Jul 2024</div>
+          </div>
+          <div class="exp-row">
+            <div><div class="exp-title">Founder &amp; Product Developer</div><div class="exp-org">Handyy — Foot-tech Startup</div></div>
+            <div class="exp-period">Mar 2021–Dec 2022</div>
+          </div>
         </div>
-
       </div>
-    </section>
+      <div>
+        <div class="snap-block">
+          <div class="snap-head">Service &amp; Leadership</div>
+          <div class="honor-item"><div class="honor-title">Reviewer — ACM CHI 2026 Posters</div><div class="honor-org">ACM SIGCHI</div></div>
+          <div class="honor-item"><div class="honor-title">Graduate Student Council President</div><div class="honor-org">KAIST Culture Technology</div></div>
+          <div class="honor-item"><div class="honor-title">Exhibition Staff</div><div class="honor-org">CES 2024 · SIGGRAPH Asia 2025</div></div>
+        </div>
+        <div class="snap-block">
+          <div class="snap-head">Honors</div>
+          <div class="honor-item"><div class="honor-title">Certificate of Excellence — TA</div><div class="honor-org">KAIST Education 4.0Q · Sep 2025</div></div>
+          <div class="honor-item"><div class="honor-title">Excellence Award</div><div class="honor-org">Samsung Securities Digital IT · Dec 2023</div></div>
+        </div>
+        <div class="snap-block">
+          <div class="snap-head">Technical Skills</div>
+          <div class="skills-wrap">
+            <span class="skill">Python</span><span class="skill">C++</span><span class="skill">CUDA</span>
+            <span class="skill">PyTorch</span><span class="skill">Diffusers</span><span class="skill">Nerfstudio</span>
+            <span class="skill">3DGS</span><span class="skill">Blender</span><span class="skill">Maya</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- 01 PUBLICATIONS -->
-    <section id="publications" class="fade-in">
-      <div class="section-label">01 — Publications</div>
-      <h2>Research & Publications</h2>
-      <div class="pub-list">
-
-        <div class="pub-card fade-in">
-          <div class="pub-badge-only"><span class="badge badge-wip">In Submission</span></div>
+  <section id="publications" class="reveal">
+    <div class="sec-label">01 — Publications</div>
+    <h2>Research &amp; Publications</h2>
+    <div class="pub-list">
+      <div class="pub-item">
+        <div class="pub-index">[1]</div>
+        <div>
+          <div class="pub-status status-wip">In Submission</div>
           <div class="pub-title">Stylized 3D Editing from a Single Image via Attention Manipulation</div>
           <div class="pub-desc">A 3D stylization framework ensuring strict multi-view consistency through cross-view attention manipulation in diffusion models — identity-preserving style transfer from a single reference image to 3DGS representations.</div>
-          <!--<div class="pub-links"><a href="https://github.com/ccsum19/sumincho-research-docs/blob/main/Sesa3D/stylized_3d_editing.pdf" target="_blank" class="pub-link">Draft PDF ↗</a></div>-->
         </div>
-
-        <div class="pub-card fade-in">
-          <div class="pub-badge-only"><span class="badge badge-wip">In Submission</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-index">[2]</div>
+        <div>
+          <div class="pub-status status-wip">In Submission</div>
           <div class="pub-title">AnyWear: Text-Driven Garment Generation via Mask Estimation</div>
           <div class="pub-desc">Text-guided garment template generation for arbitrary 3D characters via a DGCNN-based highlighting model, with diffusion-based deformation producing character-fitted garment meshes.</div>
         </div>
-
-        <div class="pub-card fade-in">
-          <div class="pub-badge-only"><span class="badge badge-pub">Submitted</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-index">[3]</div>
+        <div>
+          <div class="pub-status status-pub">Submitted</div>
           <div class="pub-title">Sensory Kitchen: AI-Based Cooking Education System for Visually Impaired</div>
           <div class="pub-desc">Multimodal cooking assistant combining generative AI and tactile interaction for accessibility-focused cooking education.</div>
-          <!--<div class="pub-links"><a href="https://github.com/ccsum19/sumincho-research-docs/blob/main/Sesa3D/stylized_3d_editing.pdf" target="_blank" class="pub-link">Draft PDF ↗</a></div>-->
         </div>
-
-        <div class="pub-card fade-in">
-          <div class="pub-venue">arXiv 2024 <span class="badge badge-pub">Published</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-index">[4]</div>
+        <div>
+          <div class="pub-venue">arXiv 2024</div>
+          <div class="pub-status status-pub">Published</div>
           <div class="pub-title">ConTEXTure: Consistent Multi-view Texture Generation for 3D Meshes</div>
           <div class="pub-desc">Simultaneous multi-view texture generation pipeline addressing viewpoint bias in diffusion-based 3D texturing. Technical paper targeting SIGGRAPH Asia 2024.</div>
           <div class="pub-links"><a href="https://arxiv.org/abs/2407.10558" target="_blank" class="pub-link">arXiv:2407.10558 ↗</a></div>
         </div>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 02 PROJECTS -->
-    <section id="projects" class="fade-in">
-      <div class="section-label">02 — Projects</div>
-      <h2>Selected Projects</h2>
-      <div class="project-grid">
-        <div class="project-card" data-project="0"><div class="project-number">01</div><div class="project-title">IllusionCraft: Diffusion-Optimized Textures for Transforming Surfaces</div><div class="project-desc">3D visual illusions via multi-view optimization — shared-face origami and view-dependent cube illusions.</div><div class="project-tags"><span class="tag">Diffusion</span><span class="tag">3D Texturing</span><span class="tag">Multi-view</span></div><div class="project-cta">Click for details →</div></div>
-        <div class="project-card" data-project="1"><div class="project-number">02</div><div class="project-title">3D Virtual Indoor Scene Generation via LLM and RAG</div><div class="project-desc">Automated 3D scene generation with LLMs and RAG. Exhibited at SIGGRAPH 2025 (KOCCA).</div><div class="project-tags"><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">3D Generation</span></div><div class="project-cta">Click for details →</div></div>
-        <div class="project-card" data-project="2"><div class="project-number">03</div><div class="project-title">Stylized Infinite-Zoom 3D Scene Generation</div><div class="project-desc">Full 3D infinite-zoom pipeline combining Gaussian Splatting and 3D style transfer.</div><div class="project-tags"><span class="tag">3DGS</span><span class="tag">Style Transfer</span><span class="tag">Scene Blending</span></div><div class="project-cta">Click for details →</div></div>
-        <div class="project-card" data-project="3"><div class="project-number">04</div><div class="project-title">Few-Step Diffusion (EDM + Consistency Distillation)</div><div class="project-desc">EDM teacher + Consistency Distillation student for NFE=1/2/4 fast sampling. Competitive FID.</div><div class="project-tags"><span class="tag">Diffusion</span><span class="tag">EDM</span><span class="tag">Distillation</span></div><div class="project-cta">Click for details →</div></div>
-        <div class="project-card" data-project="4"><div class="project-number">05</div><div class="project-title">3D Virtual Interior Design Service</div><div class="project-desc">Deep learning platform for realistic virtual spaces from video using NeRF and depth estimation.</div><div class="project-tags"><span class="tag">NeRF</span><span class="tag">3D Reconstruction</span><span class="tag">Depth</span></div><div class="project-cta">Click for details →</div></div>
-        <div class="project-card" data-project="5"><div class="project-number">06</div><div class="project-title">Textile Generation for PBR-Ready Fabric Synthesis</div><div class="project-desc">Generative model for diverse fabric patterns in PBR workflows. Collaboration with SwatchOn Inc.</div><div class="project-tags"><span class="tag">Generative</span><span class="tag">PBR</span><span class="tag">Texture Synthesis</span></div><div class="project-cta">Click for details →</div></div>
+  <section id="projects" class="reveal">
+    <div class="sec-label">02 — Projects</div>
+    <h2>Selected Projects</h2>
+    <div class="proj-list">
+      <div class="proj-item" data-project="0">
+        <div class="proj-num">01</div>
+        <div><div class="proj-title">IllusionCraft: Diffusion-Optimized Textures for Transforming Surfaces</div><div class="proj-desc">3D visual illusions via multi-view optimization — shared-face origami and view-dependent cube illusions.</div><div class="proj-tags"><span class="ptag">Diffusion</span><span class="ptag">3D Texturing</span><span class="ptag">Multi-view</span></div></div>
+        <div class="proj-arrow">↗</div>
       </div>
-    </section>
-
-    <!-- 03 PAPER STUDY -->
-    <section id="papers" class="fade-in">
-      <div class="section-label">03 — Paper Studies</div>
-      <h2>Research Readings</h2>
-      <p style="font-size:14px;color:var(--text-muted);margin-bottom:36px;max-width:500px;line-height:1.8;">
-          Shared 50+ papers with research group across 4 core areas (18+ months).    Click categories → detailed notes & insights.
-      </p>
-
-      <div class="paper-cat-grid">
-        <div class="paper-cat-card" data-cat="0">
-          <div class="cat-icon">🧊</div>
-          <div class="cat-name">3D Representation</div>
-          <div class="cat-sub">NeRF · 3DGS · Neural Fields</div>
-          <div class="cat-count" id="count-0">— papers</div>
-          <div class="cat-arrow">↗</div>
-        </div>
-        <div class="paper-cat-card" data-cat="1">
-          <div class="cat-icon">🌀</div>
-          <div class="cat-name">Diffusion Models</div>
-          <div class="cat-sub">Score Matching · DDPM · Flow</div>
-          <div class="cat-count" id="count-1">— papers</div>
-          <div class="cat-arrow">↗</div>
-        </div>
-        <div class="paper-cat-card" data-cat="2">
-          <div class="cat-icon">⚡</div>
-          <div class="cat-name">Generative Models</div>
-          <div class="cat-sub">GAN · VAE · Normalizing Flows</div>
-          <div class="cat-count" id="count-2">— papers</div>
-          <div class="cat-arrow">↗</div>
-        </div>
-        <div class="paper-cat-card" data-cat="3">
-          <div class="cat-icon">👤</div>
-          <div class="cat-name">Human / Avatar / Face</div>
-          <div class="cat-sub">FLAME · Body Pose · Avatars</div>
-          <div class="cat-count" id="count-3">— papers</div>
-          <div class="cat-arrow">↗</div>
-        </div>
+      <div class="proj-item" data-project="1">
+        <div class="proj-num">02</div>
+        <div><div class="proj-title">3D Virtual Indoor Scene Generation via LLM and RAG</div><div class="proj-desc">Automated 3D scene generation with LLMs and RAG. Exhibited at SIGGRAPH 2025 (KOCCA).</div><div class="proj-tags"><span class="ptag">LLM</span><span class="ptag">RAG</span><span class="ptag">3D Generation</span></div></div>
+        <div class="proj-arrow">↗</div>
       </div>
-    </section>
+      <div class="proj-item" data-project="2">
+        <div class="proj-num">03</div>
+        <div><div class="proj-title">Stylized Infinite-Zoom 3D Scene Generation</div><div class="proj-desc">Full 3D infinite-zoom pipeline combining Gaussian Splatting and 3D style transfer.</div><div class="proj-tags"><span class="ptag">3DGS</span><span class="ptag">Style Transfer</span><span class="ptag">Scene Blending</span></div></div>
+        <div class="proj-arrow">↗</div>
+      </div>
+      <div class="proj-item" data-project="3">
+        <div class="proj-num">04</div>
+        <div><div class="proj-title">Few-Step Diffusion (EDM + Consistency Distillation)</div><div class="proj-desc">EDM teacher + Consistency Distillation student for NFE=1/2/4 fast sampling. Competitive FID.</div><div class="proj-tags"><span class="ptag">Diffusion</span><span class="ptag">EDM</span><span class="ptag">Distillation</span></div></div>
+        <div class="proj-arrow">↗</div>
+      </div>
+      <div class="proj-item" data-project="4">
+        <div class="proj-num">05</div>
+        <div><div class="proj-title">3D Virtual Interior Design Service</div><div class="proj-desc">Deep learning platform for realistic virtual spaces from video using NeRF and depth estimation.</div><div class="proj-tags"><span class="ptag">NeRF</span><span class="ptag">3D Reconstruction</span><span class="ptag">Depth</span></div></div>
+        <div class="proj-arrow">↗</div>
+      </div>
+      <div class="proj-item" data-project="5">
+        <div class="proj-num">06</div>
+        <div><div class="proj-title">Textile Generation for PBR-Ready Fabric Synthesis</div><div class="proj-desc">Generative model for diverse fabric patterns in PBR workflows. Collaboration with SwatchOn Inc.</div><div class="proj-tags"><span class="ptag">Generative</span><span class="ptag">PBR</span><span class="ptag">Texture Synthesis</span></div></div>
+        <div class="proj-arrow">↗</div>
+      </div>
+    </div>
+  </section>
 
-  </div>
+  <section id="papers" class="reveal">
+    <div class="sec-label">03 — Paper Studies</div>
+    <h2>Research Readings</h2>
+    <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:32px;max-width:480px;line-height:1.85;font-family:var(--mono);">
+      50+ papers shared with research group · 18+ months · 4 core areas
+    </p>
+    <div class="paper-grid">
+      <div class="paper-cat" data-cat="0">
+        <div class="pcat-icon">🧊</div>
+        <div class="pcat-name">3D Representation</div>
+        <div class="pcat-sub">NeRF · 3DGS<br>Neural Fields</div>
+        <div class="pcat-count" id="count-0">Coming soon</div>
+        <div class="pcat-arrow">↗</div>
+      </div>
+      <div class="paper-cat" data-cat="1">
+        <div class="pcat-icon">🌀</div>
+        <div class="pcat-name">Diffusion Models</div>
+        <div class="pcat-sub">Score Matching<br>DDPM · Flow</div>
+        <div class="pcat-count" id="count-1">Coming soon</div>
+        <div class="pcat-arrow">↗</div>
+      </div>
+      <div class="paper-cat" data-cat="2">
+        <div class="pcat-icon">⚡</div>
+        <div class="pcat-name">Generative Models</div>
+        <div class="pcat-sub">GAN · VAE<br>Normalizing Flows</div>
+        <div class="pcat-count" id="count-2">Coming soon</div>
+        <div class="pcat-arrow">↗</div>
+      </div>
+      <div class="paper-cat" data-cat="3">
+        <div class="pcat-icon">👤</div>
+        <div class="pcat-name">Human / Avatar</div>
+        <div class="pcat-sub">FLAME · Body Pose<br>Avatars · Face</div>
+        <div class="pcat-count" id="count-3">Coming soon</div>
+        <div class="pcat-arrow">↗</div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <p>Sumin Cho · KAIST Visual Media Lab · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfbcbaa2a6a1b6a58fa8a2aea6a3e1aca0a2">sumincho@kaist.ac.kr</a></p>
-    <p style="margin-top:6px;font-size:9px;">Last updated Feb 2026</p>
-  </footer>
 </div>
+
+<footer>
+  <div class="footer-id">Sumin Cho · KAIST VML</div>
+  <div class="footer-meta"><a href="mailto:sumincho@kaist.ac.kr">sumincho@kaist.ac.kr</a> &nbsp;·&nbsp; Last updated Feb 2026</div>
+</footer>
 
 <!-- PROJECT MODAL -->
 <div class="modal-overlay" id="proj-overlay">
@@ -475,7 +718,7 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center;font-
   </div>
 </div>
 
-<!-- PAPER CATEGORY MODAL -->
+<!-- PAPER MODAL -->
 <div class="modal-overlay" id="paper-overlay">
   <div class="modal" id="paper-modal">
     <button class="modal-close" id="paper-close">✕</button>
@@ -483,13 +726,8 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center;font-
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ══════════════════════════════
-   DATA — PROJECTS
-   img: null = placeholder, or "images/xxx.gif"
-   links: [] = private repo
-══════════════════════════════ */
-const projects = [
+<script>
+var projects = [
   { title:"IllusionCraft: Diffusion-Optimized Textures for Transforming Surfaces", venue:"KAIST · Oct–Dec 2024", desc:"Developed a system creating 3D visual illusions through multi-view texture optimization. Built a pipeline enabling multiple distinct images to be embedded into a single 3D object surface — demonstrated through shared-face origami and view-dependent cube illusions.", tags:["Diffusion","3D Texturing","Multi-view Optimization","PyTorch"], img:null, links:[{label:"Technical Report ↗",url:"https://github.com/ccsum19/sumincho-research-docs/blob/main/IllusionCraft/IllusionCraft_TechReport.pdf",primary:true}] },
   { title:"3D Virtual Indoor Scene Generation via LLM and RAG", venue:"KAIST · KAI · Oct 2024–Nov 2025", desc:"Automated 3D scene generation using LLMs and retrieval-augmented generation. Collaborated with KAI for industry deployment. Exhibited at SIGGRAPH 2025 as part of the KOCCA virtual space project. Registered Korean software copyright (Nov 2025).", tags:["LLM","RAG","3D Generation","Scene Layout"], img:null, links:[{label:"GitHub ↗",url:"https://github.com/KAIST-VML/KOCCA-SceneGeneration",primary:true}] },
   { title:"Stylized Infinite-Zoom 3D Scene Generation", venue:"KAIST · Oct–Dec 2024", desc:"Full 3D infinite-zoom pipeline combining Gaussian Splatting reconstruction and 3D style transfer. Developed seamless scene blending and nested multi-scene structure for continuous zoom transitions.", tags:["3DGS","Style Transfer","Scene Blending"], img:null, links:[{label:"Report ↗",url:"https://github.com/ccsum19/sumincho-research-docs/tree/main/InfiniteZoom",primary:true}] },
@@ -498,143 +736,75 @@ const projects = [
   { title:"Textile Generation for PBR-Ready Fabric Synthesis", venue:"Sogang University · SwatchOn Inc. · Jul 2023–Feb 2024", desc:"Generative model producing diverse fabric patterns for PBR texture workflows. Led dataset construction — captured and curated high-resolution textile images for physically based rendering pipelines. Industry collaboration with SwatchOn.", tags:["Generative Models","PBR","Texture Synthesis","Dataset"], img:null, links:[] }
 ];
 
-/* ══════════════════════════════
-   DATA — PAPER CATEGORIES
-   각 카테고리에 논문 추가하는 방법:
-   {
-     title: "논문 제목",
-     venue: "CVPR 2023",        // 게재/arXiv 정보
-     note: "내가 공부한 노트 내용. <em>강조할 부분</em> 가능.",
-     links: [
-       { label: "arXiv", url: "https://arxiv.org/abs/..." },
-       { label: "Project", url: "https://..." }
-     ]
-   }
-══════════════════════════════ */
-const paperCategories = [
-  {
-    name: "3D Representation",
-    sub: "NeRF · 3DGS · Neural Fields",
-    icon: "🧊",
-    accentVar: "--accent1",
-    papers: [
-      // ── 여기에 논문 추가 ──
-      // 예시:
-      // { title:"3D Gaussian Splatting for Real-Time Radiance Field Rendering", venue:"SIGGRAPH 2023", note:"Point-based radiance field that uses <em>anisotropic Gaussians</em> as primitives. Key insight: differentiable rasterization of Gaussians enables real-time rendering while maintaining high quality.", links:[{label:"arXiv",url:"https://arxiv.org/abs/2308.04079"},{label:"Project",url:"https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/"}] },
-    ]
-  },
-  {
-    name: "Diffusion Models",
-    sub: "Score Matching · DDPM · Flow",
-    icon: "🌀",
-    accentVar: "--accent2",
-    papers: [
-      // ── 여기에 논문 추가 ──
-    ]
-  },
-  {
-    name: "Generative Models",
-    sub: "GAN · VAE · Normalizing Flows",
-    icon: "⚡",
-    accentVar: "--accent3",
-    papers: [
-      // ── 여기에 논문 추가 ──
-    ]
-  },
-  {
-    name: "Human / Avatar / Face",
-    sub: "FLAME · Body Pose · Avatars",
-    icon: "👤",
-    accentVar: "--ffc850",
-    papers: [
-      // ── 여기에 논문 추가 ──
-    ]
-  }
+var paperCategories = [
+  { name:"3D Representation",   sub:"NeRF · 3DGS · Neural Fields",    icon:"🧊", papers:[] },
+  { name:"Diffusion Models",    sub:"Score Matching · DDPM · Flow",    icon:"🌀", papers:[] },
+  { name:"Generative Models",   sub:"GAN · VAE · Normalizing Flows",   icon:"⚡", papers:[] },
+  { name:"Human / Avatar / Face", sub:"FLAME · Body Pose · Avatars",   icon:"👤", papers:[] }
 ];
 
-/* update counts on category cards */
-paperCategories.forEach((cat, i) => {
-  const el = document.getElementById(`count-${i}`);
-  if (el) el.textContent = cat.papers.length > 0 ? `${cat.papers.length} paper${cat.papers.length>1?'s':''}` : 'Coming soon';
+paperCategories.forEach(function(cat, i) {
+  var el = document.getElementById('count-' + i);
+  if (el && cat.papers.length > 0) el.textContent = cat.papers.length + ' paper' + (cat.papers.length > 1 ? 's' : '');
 });
 
-/* ── PROJECT MODAL ── */
-const projOverlay = document.getElementById('proj-overlay');
-const projContent = document.getElementById('proj-content');
-document.getElementById('proj-close').addEventListener('click', () => closeModal(projOverlay));
-projOverlay.addEventListener('click', e => { if(e.target===projOverlay) closeModal(projOverlay); });
+/* Project modal */
+var projOverlay = document.getElementById('proj-overlay');
+var projContent = document.getElementById('proj-content');
+document.getElementById('proj-close').onclick = function() { closeModal(projOverlay); };
+projOverlay.onclick = function(e) { if (e.target === projOverlay) closeModal(projOverlay); };
 
-document.querySelectorAll('.project-card').forEach(c =>
-  c.addEventListener('click', () => {
-    const p = projects[+c.dataset.project];
-    const imgH = p.img ? `<img class="modal-img" src="${p.img}" alt="${p.title}">` : `<div class="modal-img-placeholder">[ image / demo ]</div>`;
-    const linksH = p.links.length
-      ? p.links.map(l=>`<a href="${l.url}" target="_blank" class="btn-m ${l.primary?'btn-m-primary':'btn-m-ghost'}">${l.label}</a>`).join('')
-      : `<span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);">Repository not public</span>`;
-    projContent.innerHTML = `${imgH}<div class="modal-body"><div class="modal-venue">${p.venue}</div><div class="modal-title">${p.title}</div><div class="modal-desc">${p.desc}</div><div class="modal-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div><div class="modal-links">${linksH}</div></div>`;
+document.querySelectorAll('.proj-item').forEach(function(card) {
+  card.onclick = function() {
+    var p = projects[parseInt(card.dataset.project)];
+    var imgH = p.img ? '<img style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px 6px 0 0;display:block" src="' + p.img + '">' : '<div class="modal-img-ph">[ visual / demo ]</div>';
+    var linksH = p.links.length ? p.links.map(function(l){ return '<a href="' + l.url + '" target="_blank" class="mbtn ' + (l.primary ? 'mbtn-sky' : 'mbtn-ghost') + '">' + l.label + '</a>'; }).join('') : '<span style="font-family:var(--mono);font-size:10px;color:var(--text-dim)">Repository private</span>';
+    projContent.innerHTML = imgH + '<div class="modal-body"><div class="modal-ven">' + p.venue + '</div><div class="modal-title">' + p.title + '</div><div class="modal-desc">' + p.desc + '</div><div class="modal-tags">' + p.tags.map(function(t){ return '<span class="ptag">' + t + '</span>'; }).join('') + '</div><div class="modal-links">' + linksH + '</div></div>';
     openModal(projOverlay);
-  })
-);
+  };
+});
 
-/* ── PAPER CATEGORY MODAL ── */
-const paperOverlay = document.getElementById('paper-overlay');
-const paperContent = document.getElementById('paper-content');
-document.getElementById('paper-close').addEventListener('click', () => closeModal(paperOverlay));
-paperOverlay.addEventListener('click', e => { if(e.target===paperOverlay) closeModal(paperOverlay); });
+/* Paper modal */
+var paperOverlay = document.getElementById('paper-overlay');
+var paperContent = document.getElementById('paper-content');
+document.getElementById('paper-close').onclick = function() { closeModal(paperOverlay); };
+paperOverlay.onclick = function(e) { if (e.target === paperOverlay) closeModal(paperOverlay); };
 
-document.querySelectorAll('.paper-cat-card').forEach(c =>
-  c.addEventListener('click', () => {
-    const cat = paperCategories[+c.dataset.cat];
-    const accentColors = ['var(--accent1)','var(--accent2)','var(--accent3)','#ffc850'];
-    const accent = accentColors[+c.dataset.cat];
-
-    const papersHtml = cat.papers.length === 0
-      ? `<div style="padding:40px 32px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-dim);">Papers coming soon — check back later.</div>`
-      : cat.papers.map(p => `
-          <div class="paper-row">
-            <div class="paper-row-top">
-              <div class="paper-row-title">${p.title}</div>
-              <div class="paper-row-venue">${p.venue||''}</div>
-            </div>
-            ${p.note ? `<div class="paper-note">${p.note}</div>` : ''}
-            ${p.links&&p.links.length ? `<div class="paper-row-links">${p.links.map(l=>`<a href="${l.url}" target="_blank" class="paper-link">${l.label} ↗</a>`).join('')}</div>` : ''}
-          </div>`).join('');
-
-    paperContent.innerHTML = `
-      <div class="pmodal-header">
-        <div class="pmodal-cat-label" style="color:${accent}">${cat.icon} ${cat.name}</div>
-        <div class="pmodal-title">${cat.sub}</div>
-        <div class="pmodal-sub">${cat.papers.length} paper${cat.papers.length!==1?'s':''} studied</div>
-      </div>
-      <div class="pmodal-divider"></div>
-      <div class="pmodal-list">${papersHtml}</div>`;
+document.querySelectorAll('.paper-cat').forEach(function(card) {
+  card.onclick = function() {
+    var cat = paperCategories[parseInt(card.dataset.cat)];
+    var papersH = cat.papers.length === 0
+      ? '<div style="padding:48px 32px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em">Papers coming soon.</div>'
+      : cat.papers.map(function(p) {
+          var linksH = p.links && p.links.length ? '<div class="paper-rlinks">' + p.links.map(function(l){ return '<a href="' + l.url + '" target="_blank" class="paper-rlink">' + l.label + ' ↗</a>'; }).join('') + '</div>' : '';
+          return '<div class="paper-row"><div class="paper-row-top"><div class="paper-rtitle">' + p.title + '</div><div class="paper-rven">' + (p.venue||'') + '</div></div>' + (p.note ? '<div class="paper-note">' + p.note + '</div>' : '') + linksH + '</div>';
+        }).join('');
+    paperContent.innerHTML = '<div class="pmodal-head"><div class="pmodal-cat">' + cat.icon + ' ' + cat.name + '</div><div class="pmodal-title">' + cat.sub + '</div><div class="pmodal-sub">' + cat.papers.length + ' paper' + (cat.papers.length !== 1 ? 's' : '') + ' studied</div></div><div class="pmodal-divider"></div><div class="pmodal-body">' + papersH + '</div>';
     openModal(paperOverlay);
-  })
-);
-
-/* ── MODAL HELPERS ── */
-function openModal(overlay) {
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(overlay) {
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeModal(projOverlay);
-    closeModal(paperOverlay);
-  }
+  };
 });
 
-/* ── FADE IN ── */
-const obs = new IntersectionObserver(entries =>
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
-  { threshold:.08, rootMargin:'0px 0px -30px 0px' });
-document.querySelectorAll('.fade-in').forEach(el => {
-  el.classList.add('animate');
-  obs.observe(el);
+function openModal(o) { o.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal(o) { o.classList.remove('open'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeModal(projOverlay); closeModal(paperOverlay); } });
+
+/* Nav + scroll hint */
+window.addEventListener('scroll', function() {
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 30);
+  var hint = document.getElementById('scroll-hint');
+  if (hint) hint.classList.toggle('gone', window.scrollY > 60);
 });
 
-/* ── NAV SWAP ── */
+/* Reveal on scroll */
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+
+document.querySelectorAll('.reveal').forEach(function(el) {
+  revealObserver.observe(el);
+});
+</script>
+</body>
+</html>
