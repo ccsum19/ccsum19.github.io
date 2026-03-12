@@ -203,12 +203,13 @@ h1 {
   margin-bottom: 28px;
 }
 .hero-bio {
-  font-size: 15.5px;
+  font-size: 17px;
   color: var(--text-muted);
-  line-height: 1.9;
+  line-height: 1.85;
   max-width: 580px;
-  margin-bottom: 28px;
+  margin-bottom: 0;
 }
+.hero-bio + .hero-bio { margin-top: 14px; margin-bottom: 28px; }
 .hero-bio strong { color: var(--text); font-weight: 400; }
 .research-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 .rtag {
@@ -260,10 +261,8 @@ h1 {
 .lab-link {
   color: var(--sky);
   text-decoration: none;
-  border-bottom: 1px solid var(--sky-mid);
-  transition: border-color .2s;
 }
-.lab-link:hover { border-color: var(--sky); }
+.lab-link:hover { color: var(--sky); }
 .contact-email {
   font-family: var(--mono);
   font-size: 10px;
@@ -537,7 +536,7 @@ footer a:hover { color: var(--sky); }
         </a>
       </div>
       <p class="hero-bio">
-        I am a M.S. candidate at <a href="https://vml.kaist.ac.kr/home" target="_blank" class="lab-link">KAIST Visual Media Lab</a>, advised by <strong>Prof. Junyong Noh</strong>.
+        I am a second-year Master student at <a href="https://vml.kaist.ac.kr/home" target="_blank" class="lab-link">KAIST Visual Media Lab</a> advised by Prof. Junyong Noh.
       </p>
       <p class="hero-bio">
         I work at the intersection of <strong>computer vision</strong> and <strong>computer graphics</strong>, focused on controllable generative AI for 3D content. My research explores <strong>diffusion and flow-based models</strong> — leveraging 2D diffusion priors or combining 3D flow model latents with neural representations for stylization, editing, and reconstruction.
