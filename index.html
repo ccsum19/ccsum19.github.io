@@ -203,12 +203,13 @@ h1 {
   margin-bottom: 28px;
 }
 .hero-bio {
-  font-size: 15.5px;
+  font-size: 17px;
   color: var(--text-muted);
-  line-height: 1.9;
-  max-width: 580px;
-  margin-bottom: 28px;
+  line-height: 1.85;
+  max-width: 100%;
+  margin-bottom: 0;
 }
+.hero-bio + .hero-bio { margin-top: 14px; margin-bottom: 28px; }
 .hero-bio strong { color: var(--text); font-weight: 400; }
 .research-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 .rtag {
@@ -224,7 +225,8 @@ h1 {
   cursor: default;
 }
 .rtag:hover { border-color: var(--sky-mid); color: var(--sky); background: var(--sky-dim); }
-.hero-contacts { display: flex; gap: 10px; align-items: center; }
+.hero-contacts { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.icon-row { display: flex; gap: 10px; align-items: center; }
 .icon-btn {
   width: 36px; height: 36px;
   border-radius: 4px;
@@ -236,9 +238,31 @@ h1 {
   color: var(--text-muted);
   text-decoration: none;
   transition: all .2s;
-  margin-bottom: 24px;
 }
 .icon-btn:hover { border-color: var(--sky); color: var(--sky); background: var(--sky-dim); }
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  padding: 7px 13px;
+  border-radius: 4px;
+  border: 1px solid var(--sky-mid);
+  background: var(--sky-dim);
+  color: var(--sky);
+  text-decoration: none;
+  transition: all .2s;
+  margin-bottom: 12px;
+}
+.cv-btn:hover { background: rgba(125,211,252,.18); border-color: var(--sky); }
+.lab-link {
+  color: var(--sky);
+  text-decoration: none;
+}
+.lab-link:hover { color: var(--sky); }
 .contact-email {
   font-family: var(--mono);
   font-size: 10px;
@@ -479,6 +503,7 @@ footer a:hover { color: var(--sky); }
     <li><a href="#publications">Publications</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#papers">Reading</a></li>
+    <li><a href="CV_SuminCho.pdf" target="_blank" download>CV</a></li>
   </ul>
 </nav>
 
@@ -493,8 +518,8 @@ footer a:hover { color: var(--sky); }
     <div class="hero-text">
       <div class="hero-tag">M.S. Candidate · Computer Vision &amp; Graphics</div>
       <h1><span class="name-em">Sumin</span> Cho</h1>
-      <div class="hero-affil">Visual Media Lab · KAIST &nbsp;·&nbsp; Prof. Junyong Noh</div>
         <div class="hero-contacts">
+        <div class="icon-row">
         <a href="mailto:sumincho@kaist.ac.kr" class="icon-btn" title="Email">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         </a>
@@ -504,7 +529,15 @@ footer a:hover { color: var(--sky); }
         <a href="https://scholar.google.co.kr/citations?hl=ko&user=Yc6zOJIAAAAJ" target="_blank" class="icon-btn" title="Google Scholar">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
         </a>
+        </div>
+        <a href="CV_SuminCho.pdf" target="_blank" download class="cv-btn">
+          Download my CV
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        </a>
       </div>
+      <p class="hero-bio">
+        I am a second-year Master student at <a href="https://vml.kaist.ac.kr/home" target="_blank" class="lab-link">KAIST Visual Media Lab</a> advised by Prof. Junyong Noh.
+      </p>
       <p class="hero-bio">
         I work at the intersection of <strong>computer vision</strong> and <strong>computer graphics</strong>, focused on controllable generative AI for 3D content. My research explores <strong>diffusion and flow-based models</strong> — leveraging 2D diffusion priors or combining 3D flow model latents with neural representations for stylization, editing, and reconstruction.
       </p>
