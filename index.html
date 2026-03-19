@@ -313,9 +313,12 @@ h2 {
   border-bottom: 1px solid var(--border);
   margin-bottom: 18px;
 }
-.edu-item { margin-bottom: 16px; }
-.edu-deg { font-size: 14.5px; font-weight: 400; color: var(--text); margin-bottom: 2px; }
-.edu-inst { font-family: var(--mono); font-size: 11px; color: var(--sky); margin-bottom: 1px; }
+.edu-item { margin-bottom: 16px; padding: 10px 12px; margin-left: -12px; margin-right: -12px; border-radius: 4px; transition: background .2s, border-color .2s; cursor: pointer; border: 1px solid transparent; }
+.edu-item:hover { background: var(--sky-dim); border-color: var(--border2); }
+.edu-item:hover .edu-deg { color: var(--sky); }
+.edu-item:hover .edu-inst { color: var(--text); }
+.edu-deg { font-size: 14.5px; font-weight: 400; color: var(--text); margin-bottom: 2px; transition: color .2s; }
+.edu-inst { font-family: var(--mono); font-size: 11px; color: var(--sky); margin-bottom: 1px; transition: color .2s; }
 .edu-period { font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
 .exp-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 12px; align-items: flex-start; }
 .exp-title { font-size: 14px; color: var(--text); margin-bottom: 1px; }
@@ -568,12 +571,12 @@ footer a:hover { color: var(--sky); }
       <div>
         <div class="snap-block">
           <div class="snap-head">Education</div>
-          <div class="edu-item">
+          <div class="edu-item" onclick="window.open('KAIST_Transcript.pdf','_blank')">
             <div class="edu-deg">M.S. Computer Vision &amp; Graphics <span style="color:var(--text-dim);font-size:11px;font-family:var(--mono);">· GPA 4.1/4.3</span></div>
             <div class="edu-inst">KAIST · Visual Media Lab (Prof. Junyong Noh)</div>
             <div class="edu-period">Sep 2024 – Aug 2026 (expected)</div>
           </div>
-          <div class="edu-item">
+          <div class="edu-item" onclick="window.open('sogang_transcript.pdf','_blank')">
             <div class="edu-deg">B.S. Art&amp;Tech · Software · Media <span style="color:var(--text-dim);font-size:11px;font-family:var(--mono);">· Triple Major</span></div>
             <div class="edu-inst">Sogang University</div>
             <div class="edu-period">Mar 2019 – Aug 2024</div>
