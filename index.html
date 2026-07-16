@@ -18,8 +18,8 @@
   --sky-dim:    rgba(26,109,212,.06);
   --sky-mid:    rgba(26,109,212,.2);
   --text:       #1a1f2e;
-  --text-muted: #5a6577;
-  --text-dim:   #8a95a5;
+  --text-muted: #4a5568;
+  --text-dim:   #7a8595;
   --mono: 'IBM Plex Mono', monospace;
   --serif: 'EB Garamond', serif;
   --sans: 'IBM Plex Sans', sans-serif;
@@ -29,8 +29,8 @@ html { scroll-behavior:smooth; }
 body {
   font-family: var(--sans);
   font-weight: 300;
-  font-size: 16px;
-  line-height: 1.75;
+  font-size: 17px;
+  line-height: 1.8;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
@@ -55,7 +55,7 @@ nav.scrolled {
 }
 .nav-logo {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: .18em;
   color: var(--sky);
   text-transform: uppercase;
@@ -63,7 +63,7 @@ nav.scrolled {
 .nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: .15em;
   text-transform: uppercase;
   text-decoration: none;
@@ -175,8 +175,8 @@ nav.scrolled {
 /* Hero text */
 .hero-tag {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .2em;
+  font-size: 12px;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--sky);
   margin-bottom: 16px;
@@ -203,20 +203,20 @@ h1 {
   margin-bottom: 28px;
 }
 .hero-bio {
-  font-size: 17px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.85;
   max-width: 100%;
   margin-bottom: 0;
 }
 .hero-bio + .hero-bio { margin-top: 14px; margin-bottom: 28px; }
-.hero-bio strong { color: var(--text); font-weight: 400; }
+.hero-bio strong { color: var(--text); font-weight: 500; }
 .research-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 .rtag {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .07em;
-  padding: 5px 12px;
+  font-size: 11px;
+  letter-spacing: .06em;
+  padding: 6px 14px;
   border: 1px solid var(--border2);
   border-radius: 2px;
   color: var(--text-muted);
@@ -281,8 +281,8 @@ section:last-of-type { border-bottom: none; }
 
 .sec-label {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .22em;
+  font-size: 12px;
+  letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--sky);
   margin-bottom: 8px;
@@ -293,7 +293,7 @@ section:last-of-type { border-bottom: none; }
 .sec-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--sky); opacity: .35; }
 h2 {
   font-family: var(--serif);
-  font-size: clamp(22px, 3vw, 32px);
+  font-size: clamp(26px, 3vw, 36px);
   font-weight: 400;
   color: var(--text);
   margin-bottom: 36px;
@@ -306,8 +306,8 @@ h2 {
 .snap-block:last-child { margin-bottom: 0; }
 .snap-head {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .2em;
+  font-size: 11px;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--sky);
   padding-bottom: 10px;
@@ -318,18 +318,18 @@ h2 {
 .edu-item:hover { background: var(--sky-dim); border-color: var(--border2); }
 .edu-item:hover .edu-deg { color: var(--sky); }
 .edu-item:hover .edu-inst { color: var(--text); }
-.edu-deg { font-size: 14.5px; font-weight: 400; color: var(--text); margin-bottom: 2px; transition: color .2s; }
-.edu-inst { font-family: var(--mono); font-size: 11px; color: var(--sky); margin-bottom: 1px; transition: color .2s; }
-.edu-period { font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
+.edu-deg { font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 2px; transition: color .2s; }
+.edu-inst { font-family: var(--mono); font-size: 12px; color: var(--sky); margin-bottom: 1px; transition: color .2s; }
+.edu-period { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
 .exp-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 12px; align-items: flex-start; }
-.exp-title { font-size: 14px; color: var(--text); margin-bottom: 1px; }
-.exp-org { font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
-.exp-period { font-family: var(--mono); font-size: 10px; color: var(--text-dim); white-space: nowrap; flex-shrink: 0; padding-top: 2px; }
+.exp-title { font-size: 15px; color: var(--text); margin-bottom: 1px; }
+.exp-org { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.exp-period { font-family: var(--mono); font-size: 11px; color: var(--text-dim); white-space: nowrap; flex-shrink: 0; padding-top: 2px; }
 .honor-item { margin-bottom: 10px; }
-.honor-title { font-size: 14px; color: var(--text); margin-bottom: 1px; }
-.honor-org { font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
+.honor-title { font-size: 15px; color: var(--text); margin-bottom: 1px; }
+.honor-org { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
 .skills-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-.skill { font-family: var(--mono); font-size: 10px; padding: 3px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; color: var(--text-muted); }
+.skill { font-family: var(--mono); font-size: 11px; padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; color: var(--text-muted); }
 
 /* PUBLICATIONS */
 .pub-list { display: flex; flex-direction: column; }
@@ -346,24 +346,24 @@ h2 {
 .pub-teaser img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pub-item:first-child { border-top: 1px solid var(--border); }
 .pub-item:hover { background: rgba(26,109,212,.03); }
-.pub-index { font-family: var(--mono); font-size: 11px; color: var(--text-dim); padding-top: 2px; text-align: right; }
+.pub-index { font-family: var(--mono); font-size: 12px; color: var(--text-dim); padding-top: 2px; text-align: right; }
+.pub-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.pub-venue { font-family: var(--mono); font-size: 12px; color: var(--sky); letter-spacing: .08em; font-weight: 500; }
 .pub-status {
   display: inline-block;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: .1em;
   text-transform: uppercase;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 2px;
-  margin-bottom: 8px;
 }
 .status-wip { background: var(--sky-dim); color: var(--sky); border: 1px solid var(--sky-mid); }
 .status-pub { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border2); }
-.pub-title { font-family: var(--serif); font-size: 17px; color: var(--text); margin-bottom: 8px; line-height: 1.45; font-weight: 400; }
-.pub-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; margin-bottom: 10px; }
-.pub-venue { font-family: var(--mono); font-size: 11px; color: var(--sky); letter-spacing: .08em; font-weight: 500; margin-bottom: 6px; }
+.pub-title { font-family: var(--serif); font-size: 19px; color: var(--text); margin-bottom: 8px; line-height: 1.45; font-weight: 400; }
+.pub-desc { font-size: 14.5px; color: var(--text-muted); line-height: 1.8; margin-bottom: 10px; }
 .pub-links { display: flex; gap: 14px; }
-.pub-link { font-family: var(--mono); font-size: 10px; color: var(--sky); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; letter-spacing: .04em; }
+.pub-link { font-family: var(--mono); font-size: 11px; color: var(--sky); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; letter-spacing: .04em; }
 .pub-link:hover { border-color: var(--sky); }
 
 /* PROJECTS */
@@ -381,11 +381,11 @@ h2 {
 .proj-item:first-child { border-top: 1px solid var(--border); }
 .proj-item:hover { background: rgba(26,109,212,.03); }
 .proj-item:hover .proj-arrow { color: var(--sky); transform: translate(3px,-3px); }
-.proj-num { font-family: var(--mono); font-size: 11px; color: var(--text-dim); text-align: right; padding-top: 2px; }
-.proj-title { font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 5px; }
-.proj-desc { font-size: 13px; color: var(--text-muted); line-height: 1.75; margin-bottom: 10px; }
+.proj-num { font-family: var(--mono); font-size: 12px; color: var(--text-dim); text-align: right; padding-top: 2px; }
+.proj-title { font-size: 16px; font-weight: 400; color: var(--text); margin-bottom: 5px; }
+.proj-desc { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 10px; }
 .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-.ptag { font-family: var(--mono); font-size: 9px; padding: 2px 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; color: var(--text-dim); }
+.ptag { font-family: var(--mono); font-size: 10px; padding: 3px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; color: var(--text-dim); }
 .proj-arrow { font-family: var(--mono); font-size: 14px; color: var(--text-dim); transition: all .25s; padding-top: 2px; }
 
 /* PAPERS */
@@ -395,9 +395,9 @@ h2 {
 .paper-cat:hover { background: rgba(125,211,252,.04); }
 .paper-cat:hover .pcat-arrow { color: var(--sky); }
 .pcat-icon { font-size: 22px; margin-bottom: 14px; }
-.pcat-name { font-family: var(--serif); font-size: 16px; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
-.pcat-sub { font-family: var(--mono); font-size: 9px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; letter-spacing: .04em; }
-.pcat-count { font-family: var(--mono); font-size: 10px; color: var(--sky); letter-spacing: .1em; }
+.pcat-name { font-family: var(--serif); font-size: 17px; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+.pcat-sub { font-family: var(--mono); font-size: 10px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; letter-spacing: .04em; }
+.pcat-count { font-family: var(--mono); font-size: 11px; color: var(--sky); letter-spacing: .1em; }
 .pcat-arrow { position: absolute; top: 20px; right: 20px; font-size: 14px; color: var(--text-dim); transition: all .2s; font-family: var(--mono); }
 
 /* MODALS */
@@ -586,8 +586,7 @@ footer a:hover { color: var(--sky); }
         <div class="pub-index">[1]</div>
         <div class="pub-teaser"><img src="research-teaser_0.png" alt="SIC teaser"></div>
         <div>
-          <div class="pub-venue">SIGGRAPH Asia 2025</div>
-          <div class="pub-status status-wip">Under Review</div>
+          <div class="pub-meta"><div class="pub-venue">SIGGRAPH Asia 2026</div><div class="pub-status status-wip">Under Review</div></div>
           <div class="pub-title">Sharing is Caring: Reference-Based 3D Stylization via Cross-View Attention Sharing</div>
           <div class="pub-desc">A training-free 3D stylization framework that transfers a reference image's style to 3D objects (mesh, NeRF, 3DGS) with multi-view consistency, using cross-view attention sharing in a pretrained multi-view diffusion prior.</div>
         </div>
@@ -595,7 +594,7 @@ footer a:hover { color: var(--sky); }
       <div class="pub-item">
         <div class="pub-index">[2]</div>
         <div>
-          <div class="pub-status status-wip">In Submission</div>
+          <div class="pub-meta"><div class="pub-status status-wip">In Submission</div></div>
           <div class="pub-title">AnyWear: Text-Driven Garment Generation via Mask Estimation</div>
           <div class="pub-desc">Text-guided garment template generation for arbitrary 3D characters via a DGCNN-based highlighting model, with diffusion-based deformation producing character-fitted garment meshes.</div>
         </div>
@@ -603,7 +602,7 @@ footer a:hover { color: var(--sky); }
       <div class="pub-item">
         <div class="pub-index">[3]</div>
         <div>
-          <div class="pub-status status-pub">Submitted</div>
+          <div class="pub-meta"><div class="pub-status status-pub">Submitted</div></div>
           <div class="pub-title">Sensory Kitchen: AI-Based Cooking Education System for Visually Impaired</div>
           <div class="pub-desc">Multimodal cooking assistant combining generative AI and tactile interaction for accessibility-focused cooking education.</div>
         </div>
@@ -611,8 +610,7 @@ footer a:hover { color: var(--sky); }
       <div class="pub-item">
         <div class="pub-index">[4]</div>
         <div>
-          <div class="pub-venue">arXiv 2024</div>
-          <div class="pub-status status-pub">Published</div>
+          <div class="pub-meta"><div class="pub-venue">arXiv 2024</div><div class="pub-status status-pub">Published</div></div>
           <div class="pub-title">ConTEXTure: Consistent Multi-view Texture Generation for 3D Meshes</div>
           <div class="pub-desc">Simultaneous multi-view texture generation pipeline addressing viewpoint bias in diffusion-based 3D texturing.</div>
           <div class="pub-links"><a href="https://arxiv.org/abs/2407.10558" target="_blank" class="pub-link">arXiv:2407.10558 ↗</a></div>
