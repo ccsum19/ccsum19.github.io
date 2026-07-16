@@ -9,17 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:         #07090f;
-  --bg2:        #0c0f1a;
-  --surface:    #0f1422;
-  --border:     #1a2035;
-  --border2:    #243050;
-  --sky:        #7dd3fc;
-  --sky-dim:    rgba(125,211,252,.1);
-  --sky-mid:    rgba(125,211,252,.3);
-  --text:       #e8edf5;
-  --text-muted: #8a99b3;
-  --text-dim:   #4a5568;
+  --bg:         #fafbfc;
+  --bg2:        #ffffff;
+  --surface:    #f0f2f5;
+  --border:     #e0e4ea;
+  --border2:    #c8cfd8;
+  --sky:        #1a6dd4;
+  --sky-dim:    rgba(26,109,212,.06);
+  --sky-mid:    rgba(26,109,212,.2);
+  --text:       #1a1f2e;
+  --text-muted: #5a6577;
+  --text-dim:   #8a95a5;
   --mono: 'IBM Plex Mono', monospace;
   --serif: 'EB Garamond', serif;
   --sans: 'IBM Plex Sans', sans-serif;
@@ -49,7 +49,7 @@ nav {
   transition: border-color .4s, background .4s;
 }
 nav.scrolled {
-  background: rgba(7,9,15,.92);
+  background: rgba(250,251,252,.92);
   backdrop-filter: blur(16px);
   border-color: var(--border);
 }
@@ -81,15 +81,15 @@ nav.scrolled {
   position: relative;
   border-bottom: 1px solid var(--border);
   background:
-    radial-gradient(ellipse 75% 65% at 65% 35%, rgba(125,211,252,.055) 0%, transparent 70%),
-    radial-gradient(ellipse 45% 55% at 15% 75%, rgba(125,211,252,.028) 0%, transparent 60%);
+    radial-gradient(ellipse 75% 65% at 65% 35%, rgba(26,109,212,.04) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 55% at 15% 75%, rgba(26,109,212,.02) 0%, transparent 60%);
 }
 #hero::after {
   content: '';
   position: absolute;
   left: 64px; right: 64px; bottom: -1px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--sky-mid), transparent);
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
 
 /* Scroll hint */
@@ -158,7 +158,7 @@ nav.scrolled {
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--border2);
-  box-shadow: 0 0 0 7px rgba(125,211,252,.06), 0 20px 50px rgba(0,0,0,.55);
+  box-shadow: 0 0 0 7px rgba(26,109,212,.08), 0 20px 50px rgba(0,0,0,.1);
   flex-shrink: 0;
 }
 .hero-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -260,7 +260,8 @@ h1 {
 .cv-btn:hover { background: rgba(125,211,252,.18); border-color: var(--sky); }
 .lab-link {
   color: var(--sky);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .lab-link:hover { color: var(--sky); }
 .contact-email {
@@ -341,7 +342,7 @@ h2 {
   transition: background .2s;
 }
 .pub-item:first-child { border-top: 1px solid var(--border); }
-.pub-item:hover { background: rgba(125,211,252,.015); }
+.pub-item:hover { background: rgba(26,109,212,.03); }
 .pub-index { font-family: var(--mono); font-size: 11px; color: var(--text-dim); padding-top: 2px; text-align: right; }
 .pub-status {
   display: inline-block;
@@ -354,7 +355,7 @@ h2 {
   margin-bottom: 8px;
 }
 .status-wip { background: var(--sky-dim); color: var(--sky); border: 1px solid var(--sky-mid); }
-.status-pub { background: rgba(255,255,255,.04); color: var(--text-muted); border: 1px solid var(--border2); }
+.status-pub { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border2); }
 .pub-title { font-family: var(--serif); font-size: 17px; color: var(--text); margin-bottom: 8px; line-height: 1.45; font-weight: 400; }
 .pub-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; margin-bottom: 10px; }
 .pub-venue { font-family: var(--mono); font-size: 10px; color: var(--text-dim); margin-bottom: 10px; }
@@ -375,7 +376,7 @@ h2 {
   transition: background .2s;
 }
 .proj-item:first-child { border-top: 1px solid var(--border); }
-.proj-item:hover { background: rgba(125,211,252,.015); }
+.proj-item:hover { background: rgba(26,109,212,.03); }
 .proj-item:hover .proj-arrow { color: var(--sky); transform: translate(3px,-3px); }
 .proj-num { font-family: var(--mono); font-size: 11px; color: var(--text-dim); text-align: right; padding-top: 2px; }
 .proj-title { font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 5px; }
@@ -399,7 +400,7 @@ h2 {
 /* MODALS */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 500;
-  background: rgba(4,6,12,.9);
+  background: rgba(0,0,0,.5);
   backdrop-filter: blur(14px);
   display: flex; align-items: center; justify-content: center;
   padding: 24px;
@@ -421,7 +422,7 @@ h2 {
 .modal-overlay.open .modal { transform: translateY(0); }
 .modal-close {
   position: absolute; top: 16px; right: 16px;
-  background: rgba(255,255,255,.04);
+  background: rgba(0,0,0,.04);
   border: 1px solid var(--border2);
   border-radius: 2px;
   width: 28px; height: 28px;
@@ -502,8 +503,8 @@ footer a:hover { color: var(--sky); }
 <nav id="main-nav">
   <div class="nav-logo">Sumin Cho</div>
   <ul class="nav-links">
-    <li><a href="#snapshot">About</a></li>
     <li><a href="#publications">Publications</a></li>
+    <li><a href="#snapshot">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#papers">Reading</a></li>
     <li><a href="CV_SuminCho.pdf" target="_blank" download>CV</a></li>
@@ -519,7 +520,7 @@ footer a:hover { color: var(--sky); }
       <div class="hero-photo-label">3DGS Self-Reconstruction</div>
     </div>
     <div class="hero-text">
-      <div class="hero-tag">M.S. Candidate · Computer Vision &amp; Graphics</div>
+      <div class="hero-tag">M.S. · Computer Vision &amp; Graphics</div>
       <h1><span class="name-em">Sumin</span> Cho</h1>
         <div class="hero-contacts">
         <div class="icon-row">
@@ -539,10 +540,13 @@ footer a:hover { color: var(--sky); }
         </a>
       </div>
       <p class="hero-bio">
-        I am a second-year Master student at <a href="https://vml.kaist.ac.kr/home" target="_blank" class="lab-link">KAIST Visual Media Lab</a> advised by Prof. Junyong Noh.
+        I am a second-year Master student at <a href="https://vml.kaist.ac.kr/home" target="_blank" class="lab-link">KAIST Visual Media Lab</a> advised by <a href="https://vml.kaist.ac.kr/home" target="_blank" class="lab-link">Prof. Junyong Noh</a>.
       </p>
       <p class="hero-bio">
         I work at the intersection of <strong>computer vision</strong> and <strong>computer graphics</strong>, focused on controllable generative AI for 3D content. My research explores <strong>diffusion and flow-based models</strong> — leveraging 2D diffusion priors or combining 3D flow model latents with neural representations for stylization, editing, and reconstruction.
+      </p>
+      <p class="hero-bio" style="margin-top:18px;padding:14px 18px;border-left:3px solid var(--sky);background:var(--sky-dim);border-radius:0 4px 4px 0;font-weight:400;">
+        I am currently preparing for a <strong>Ph.D.</strong> program. If you are interested in collaborating or have any opportunities, please feel free to reach out!
       </p>
       <div class="research-tags">
         <span class="rtag">Controllable Generative AI</span>
@@ -550,7 +554,8 @@ footer a:hover { color: var(--sky); }
         <span class="rtag">3D Stylization &amp; Editing</span>
         <span class="rtag">3D Reconstruction</span>
         <span class="rtag">3D Deformation</span>
-        <span class="rtag">Video and 4D Editing</span>
+        <span class="rtag">4D Generation &amp; Reconstruction</span>
+        <span class="rtag">Controllable Video Generation</span>
 
       </div>
     </div>
@@ -564,8 +569,49 @@ footer a:hover { color: var(--sky); }
 
 <div class="page-body">
 
+  <section id="publications" class="reveal">
+    <div class="sec-label">00 — Publications</div>
+    <h2>Research &amp; Publications</h2>
+    <div class="pub-list">
+      <div class="pub-item">
+        <div class="pub-index">[1]</div>
+        <div>
+          <div class="pub-status status-wip">In Submission</div>
+          <div class="pub-title">Stylized 3D Editing from a Single Image via Attention Manipulation</div>
+          <div class="pub-desc">A 3D stylization framework ensuring strict multi-view consistency through cross-view attention manipulation in diffusion models — identity-preserving style transfer from a single reference image to 3DGS representations.</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-index">[2]</div>
+        <div>
+          <div class="pub-status status-wip">In Submission</div>
+          <div class="pub-title">AnyWear: Text-Driven Garment Generation via Mask Estimation</div>
+          <div class="pub-desc">Text-guided garment template generation for arbitrary 3D characters via a DGCNN-based highlighting model, with diffusion-based deformation producing character-fitted garment meshes.</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-index">[3]</div>
+        <div>
+          <div class="pub-status status-pub">Submitted</div>
+          <div class="pub-title">Sensory Kitchen: AI-Based Cooking Education System for Visually Impaired</div>
+          <div class="pub-desc">Multimodal cooking assistant combining generative AI and tactile interaction for accessibility-focused cooking education.</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-index">[4]</div>
+        <div>
+          <div class="pub-venue">arXiv 2024</div>
+          <div class="pub-status status-pub">Published</div>
+          <div class="pub-title">ConTEXTure: Consistent Multi-view Texture Generation for 3D Meshes</div>
+          <div class="pub-desc">Simultaneous multi-view texture generation pipeline addressing viewpoint bias in diffusion-based 3D texturing.</div>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2407.10558" target="_blank" class="pub-link">arXiv:2407.10558 ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="snapshot" class="reveal">
-    <div class="sec-label">00 — Quick Snapshot</div>
+    <div class="sec-label">01 — Quick Snapshot</div>
     <h2>About</h2>
     <div class="snap-cols">
       <div>
@@ -618,47 +664,6 @@ footer a:hover { color: var(--sky); }
             <span class="skill">PyTorch</span><span class="skill">Diffusers</span><span class="skill">Nerfstudio</span>
             <span class="skill">3DGS</span><span class="skill">Blender</span><span class="skill">Maya</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="publications" class="reveal">
-    <div class="sec-label">01 — Publications</div>
-    <h2>Research &amp; Publications</h2>
-    <div class="pub-list">
-      <div class="pub-item">
-        <div class="pub-index">[1]</div>
-        <div>
-          <div class="pub-status status-wip">In Submission</div>
-          <div class="pub-title">Stylized 3D Editing from a Single Image via Attention Manipulation</div>
-          <div class="pub-desc">A 3D stylization framework ensuring strict multi-view consistency through cross-view attention manipulation in diffusion models — identity-preserving style transfer from a single reference image to 3DGS representations.</div>
-        </div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-index">[2]</div>
-        <div>
-          <div class="pub-status status-wip">In Submission</div>
-          <div class="pub-title">AnyWear: Text-Driven Garment Generation via Mask Estimation</div>
-          <div class="pub-desc">Text-guided garment template generation for arbitrary 3D characters via a DGCNN-based highlighting model, with diffusion-based deformation producing character-fitted garment meshes.</div>
-        </div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-index">[3]</div>
-        <div>
-          <div class="pub-status status-pub">Submitted</div>
-          <div class="pub-title">Sensory Kitchen: AI-Based Cooking Education System for Visually Impaired</div>
-          <div class="pub-desc">Multimodal cooking assistant combining generative AI and tactile interaction for accessibility-focused cooking education.</div>
-        </div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-index">[4]</div>
-        <div>
-          <div class="pub-venue">arXiv 2024</div>
-          <div class="pub-status status-pub">Published</div>
-          <div class="pub-title">ConTEXTure: Consistent Multi-view Texture Generation for 3D Meshes</div>
-          <div class="pub-desc">Simultaneous multi-view texture generation pipeline addressing viewpoint bias in diffusion-based 3D texturing.</div>
-          <div class="pub-links"><a href="https://arxiv.org/abs/2407.10558" target="_blank" class="pub-link">arXiv:2407.10558 ↗</a></div>
         </div>
       </div>
     </div>
